@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#101619" />
+  <title>IRON FRONTIER — Tactical Command</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="game-shell">
+    <header class="topbar">
+      <div class="brand"><div class="brand-mark"><span></span><span></span><span></span></div><div><div class="brand-name">IRON<span>FRONTIER</span></div><div class="brand-sub">TACTICAL COMMAND // SECTOR 07</div></div></div>
+      <div class="resources">
+        <div class="resource"><span class="res-icon alloy">◆</span><div><small>ALLOY</small><strong id="alloy">650</strong></div><em id="alloy-rate">+12</em></div>
+        <div class="resource"><span class="res-icon energy">ϟ</span><div><small>ENERGY</small><strong id="energy">280</strong></div><em id="energy-rate">+8</em></div>
+        <div class="resource"><span class="res-icon intel">⌖</span><div><small>INTEL</small><strong id="intel">0</strong></div><em>—</em></div>
+      </div>
+      <div class="top-actions"><div class="mission-clock"><span class="live-dot"></span><span id="clock">00:00</span><small>OPERATION LIVE</small></div><button id="pause-btn" class="icon-btn" aria-label="Pause game" title="Pause (Space)">Ⅱ</button><button id="speed-btn" class="icon-btn speed-btn" title="Game speed">1×</button></div>
+    </header>
+
+    <div class="main-layout">
+      <aside class="left-panel">
+        <div class="panel-heading"><div><span class="eyebrow">COMMAND OVERVIEW</span><h1>SECTOR <b>07</b></h1></div><span class="status-pill"><i></i> ENGAGED</span></div>
+        <section class="objective-card"><div class="objective-icon">◎</div><div><span class="eyebrow">PRIMARY OBJECTIVE</span><strong id="objective-title">Secure the sector</strong><p id="objective-copy">Destroy the enemy command core to claim victory.</p></div></section>
+        <div class="section-title"><span>FIELD INTELLIGENCE</span><i></i></div>
+        <div class="intel-row"><span>HOSTILE ACTIVITY</span><strong class="danger-text">ELEVATED</strong></div>
+        <div class="threat-meter"><span></span><span></span><span></span><span></span><span></span><span class="dim"></span><span class="dim"></span><span class="dim"></span></div>
+        <div class="intel-row"><span>NEXT CONTACT</span><strong id="wave-countdown">02:30</strong></div>
+        <div class="section-title squads-title"><span>YOUR FORCES</span><span id="unit-count">03 UNITS</span></div>
+        <div id="squad-list" class="squad-list"></div>
+        <div class="section-title log-title"><span>COMMS LOG</span><span class="log-live">● LIVE</span></div>
+        <div id="event-log" class="event-log" aria-live="polite"></div>
+        <div class="side-footer"><span class="signal-icon">◉</span> SECURE CHANNEL <span class="footer-right">ENCRYPTED</span></div>
+      </aside>
+
+      <section class="battlefield-wrap">
+        <div class="battlefield-header"><div class="map-label"><span class="map-cross">⌖</span><span>THE ASHEN REACH</span><small>GRID 07 / 14</small></div><div class="map-tools"><span class="control-hint"><kbd>WASD</kbd> PAN</span><span class="control-hint"><kbd>SCROLL</kbd> ZOOM</span><button id="center-btn" class="tool-btn" title="Center camera">⊙</button></div></div>
+        <div class="canvas-frame"><canvas id="battlefield" aria-label="Tactical battlefield"></canvas><div class="map-vignette"></div><div class="map-coordinates top-left">07 : 14 : 03</div><div class="map-coordinates bottom-right">NORTH <span>▲</span></div><div id="toast" class="toast"></div><div id="pause-overlay" class="pause-overlay"><div>Ⅱ</div><strong>SIMULATION PAUSED</strong><span>Press SPACE or resume to continue</span></div></div>
+        <div class="battlefield-footer"><div class="selection-info"><span class="selection-dot"></span><span id="selection-label">NO UNIT SELECTED</span><span class="selection-sub" id="selection-sub">Select a unit or structure</span></div><div class="terrain-info"><span>WEATHER</span><strong>ASH FALLOUT</strong><span class="weather-icon">☁</span></div></div>
+        <div class="command-bar"><div class="command-info"><span class="eyebrow">CONSTRUCTION</span><strong>FIELD COMMANDS</strong></div><div class="build-options">
+          <button class="build-card" data-build="rifle" title="Recruit a rifle squad"><span class="build-art rifle-art"><i></i><i></i><i></i></span><span class="build-name">RIFLE SQUAD</span><span class="build-cost"><b>◆ 120</b><b>ϟ 20</b></span><kbd>1</kbd></button>
+          <button class="build-card" data-build="scout" title="Recruit a scout buggy"><span class="build-art scout-art"><i></i></span><span class="build-name">SCOUT BUGGY</span><span class="build-cost"><b>◆ 180</b><b>ϟ 35</b></span><kbd>2</kbd></button>
+          <button class="build-card" data-build="turret" title="Deploy an autocannon turret"><span class="build-art turret-art"><i></i></span><span class="build-name">AUTOCANNON</span><span class="build-cost"><b>◆ 160</b><b>ϟ 45</b></span><kbd>3</kbd></button>
+          <button class="build-card" data-build="extractor" title="Build an alloy extractor"><span class="build-art extractor-art"><i></i></span><span class="build-name">EXTRACTOR</span><span class="build-cost"><b>◆ 140</b><b>ϟ 25</b></span><kbd>4</kbd></button>
+        </div><div class="command-help"><span>RIGHT-CLICK</span><small>MOVE / ATTACK</small><span class="help-divider"></span><span>DRAG</span><small>BOX SELECT</small></div></div>
+      </section>
+
+      <aside class="right-panel">
+        <div class="radar-heading"><div><span class="eyebrow">TACTICAL FEED</span><strong>SECTOR MAP</strong></div><span class="radar-status">LIVE</span></div>
+        <div class="radar-wrap"><canvas id="minimap" width="220" height="180"></canvas><div class="radar-scan"></div><span class="radar-corner tl"></span><span class="radar-corner tr"></span><span class="radar-corner bl"></span><span class="radar-corner br"></span></div>
+        <div class="map-legend"><span><i class="legend-friendly"></i> FRIENDLY</span><span><i class="legend-hostile"></i> HOSTILE</span></div>
+        <div class="section-title structure-title"><span>BASE STATUS</span><span class="base-online">● ONLINE</span></div>
+        <div class="base-card"><div class="base-thumb"><span>⌂</span><i></i></div><div class="base-detail"><strong>COMMAND RELAY</strong><small>MAIN OPERATING BASE</small><div class="health-track"><i id="base-health"></i></div><div class="health-label"><span>INTEGRITY</span><b id="base-health-label">100%</b></div></div></div>
+        <div class="section-title structure-title"><span>POWER GRID</span><span id="power-state" class="base-online">STABLE</span></div>
+        <div class="power-card"><div class="power-row"><span>GENERATION</span><b>+<span id="power-generation">8</span> / SEC</b></div><div class="power-row"><span>CONSUMPTION</span><b id="power-use">3 / SEC</b></div><div class="power-bar"><i></i></div><small>GRID CAPACITY <b>72%</b></small></div>
+        <div class="section-title structure-title"><span>SECTOR CONTROL</span><span class="control-percent" id="control-percent">18%</span></div>
+        <div class="control-track"><i id="control-bar"></i></div><p class="control-copy">Secure territory by clearing hostile positions and expanding your perimeter.</p>
+        <div class="right-footer"><span>IFC / FIELD SYSTEMS</span><span>v.2.7.04</span></div>
+      </aside>
+    </div>
+  </main>
+  <div id="build-modal" class="build-modal"><div class="modal-card"><span class="eyebrow">DEPLOYMENT ORDER</span><strong id="modal-title">DEPLOY AUTOCANNON</strong><p id="modal-copy">Choose a clear location within your controlled territory.</p><div class="modal-actions"><button id="cancel-build" class="cancel-btn">CANCEL</button><button id="confirm-build" class="confirm-btn">PLACE STRUCTURE</button></div></div></div>
+  <div id="mobile-controls" class="mobile-controls"><button data-dir="up">▲</button><div><button data-dir="left">◀</button><button data-dir="down">▼</button><button data-dir="right">▶</button></div></div>
+  <script src="game.js"></script>
+</body>
+</html>
